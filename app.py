@@ -143,3 +143,19 @@ button_label = "Go to Next Step ➡️" if st.session_state.step < 5 else "Start
 if st.button(button_label, use_container_width=True):
     next_step()
     st.rerun()
+# --- ADMIN SECTION: QR CODE FOR TABLE ---
+with st.sidebar:
+    st.divider()
+    st.subheader("Restaurant QR Code")
+    # This automatically gets your website's real URL
+    current_url = "https://your-app-name.streamlit.app" 
+    
+    import qrcode
+    from io import BytesIO
+    
+    qr = qrcode.make(current_url)
+    buf = BytesIO()
+    qr.save(buf, format="PNG")
+    st.image(buf.getvalue(), caption="Scan to Open Menu")
+    st.write("Print this and put it on your tables!")
+
